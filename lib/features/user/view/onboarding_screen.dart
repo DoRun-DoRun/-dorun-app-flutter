@@ -49,6 +49,8 @@ class OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   void _startLoading() async {
+    if (!mounted) return;
+
     setState(() {
       _isLoading = true;
     });
@@ -73,25 +75,26 @@ class OnboardingScreenState extends State<OnboardingScreen> {
 
     if (_currentIndex < messages.length - 1) {
       if (_currentIndex == 2) {
+        if (!mounted) return;
         setState(() {
           _currentIndex++;
           _startLoading();
         });
         await Future.delayed(const Duration(milliseconds: 2000), () {
+          if (!mounted) return;
           setState(() {
             _isQuestion = true;
           });
         });
         return;
       }
+      if (!mounted) return;
       setState(() {
         _currentIndex++;
         _startLoading();
       });
     } else {
-      setState(() {
-        context.go('/onBoarding/userInfo');
-      });
+      context.go('/userInfo');
     }
   }
 

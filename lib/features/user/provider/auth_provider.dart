@@ -143,13 +143,11 @@ class AuthProvider extends ChangeNotifier {
           path: '/onBoarding',
           name: OnboardingScreen.routeName,
           builder: (_, __) => const OnboardingScreen(),
-          routes: [
-            GoRoute(
-              path: 'userInfo',
-              name: UserInfoScreen.routeName,
-              builder: (_, __) => const UserInfoScreen(),
-            ),
-          ],
+        ),
+        GoRoute(
+          path: '/userInfo',
+          name: UserInfoScreen.routeName,
+          builder: (_, __) => const UserInfoScreen(),
         ),
       ];
 
