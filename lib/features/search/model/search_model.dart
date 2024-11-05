@@ -10,7 +10,7 @@ final List<String> templateList = [
   "외모관리",
   "마음의 안정",
   "규칙적인 삶",
-  "취미 활동",
+  "취미활동",
   "의료",
 ];
 
@@ -161,7 +161,7 @@ final Map<String, List<RoutineTemplate>> templateListRoutine = {
           SubRoutineTemplate(goal: "계획 확인하기", emoji: "👀", duration: 60)
         ])
   ],
-  "취미 활동": [
+  "취미활동": [
     RoutineTemplate(
         goal: "매일 기타 연습하기",
         description: "이 루틴은 매일 기타 연습을 통해 연주 실력을 향상시키는 습관을 만듭니다.",
