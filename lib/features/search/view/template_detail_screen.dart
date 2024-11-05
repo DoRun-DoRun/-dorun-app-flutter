@@ -84,7 +84,8 @@ class TemplateDetailScreen extends ConsumerWidget {
           PaddingContainer(
               child: CustomButton(
             onPressed: () {
-              context.push('/routine_create', extra: routine);
+              context.push('/routine_create',
+                  extra: RoutineCreateArgs(routineTemplate: routine));
             },
             title: "한번에 루틴 추가히기",
             backgroundColor: AppColors.BRAND,
