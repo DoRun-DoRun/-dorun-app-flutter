@@ -1,3 +1,4 @@
+import 'package:dorun_app_flutter/features/habit/model/habit_model.dart';
 import 'package:dorun_app_flutter/features/search/model/search_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -10,6 +11,8 @@ class CreateRoutineModel {
   final List<bool> repeatDays;
   final int? notificationTime;
   final List<SubRoutineTemplate>? subRoutines;
+  final String? habitCategory;
+  final List<String>? actions;
 
   CreateRoutineModel({
     required this.goal,
@@ -17,6 +20,8 @@ class CreateRoutineModel {
     required this.repeatDays,
     this.notificationTime,
     required this.subRoutines,
+    this.habitCategory,
+    this.actions,
   });
 
   factory CreateRoutineModel.fromJson(Map<String, dynamic> json) =>
@@ -245,6 +250,8 @@ class RoutineCreateProgressArgs {
   final List<bool> weekDays;
   final Duration? alertTime;
   final List<SubRoutineTemplate>? subRoutines;
+  final CreateHabitModel? habitModel;
+  final HabitResponse? habitResponse;
 
   RoutineCreateProgressArgs({
     required this.routineGoal,
@@ -252,5 +259,7 @@ class RoutineCreateProgressArgs {
     required this.weekDays,
     this.alertTime,
     this.subRoutines,
+    this.habitModel,
+    this.habitResponse,
   });
 }

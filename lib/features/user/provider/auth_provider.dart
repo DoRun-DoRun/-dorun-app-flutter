@@ -1,3 +1,7 @@
+import 'package:dorun_app_flutter/features/habit/habit_create.dart';
+import 'package:dorun_app_flutter/features/habit/habit_select.dart';
+import 'package:dorun_app_flutter/features/habit/hatbit_create_progress.dart';
+import 'package:dorun_app_flutter/features/habit/model/habit_model.dart';
 import 'package:dorun_app_flutter/features/routine/model/routine_model.dart';
 import 'package:dorun_app_flutter/features/routine/view/routine_create_progress_screen.dart';
 import 'package:dorun_app_flutter/features/routine/view/routine_create_screen.dart';
@@ -45,14 +49,45 @@ class AuthProvider extends ChangeNotifier {
           builder: (_, __) => const RootTab(),
         ),
         GoRoute(
+          path: '/habit_create',
+          name: HabitCreateScreen.routeName,
+          builder: (_, __) => const HabitCreateScreen(),
+        ),
+        GoRoute(
+          path: '/habit_create_progress',
+          name: HabitCreateProgressScreen.routeName,
+          builder: (context, state) {
+            final args = state.extra as CreateHabitModel;
+
+            return HabitCreateProgressScreen(
+              habitGoal: args.habitGoal,
+              habitCategory: args.habitCategory,
+            );
+          },
+        ),
+        GoRoute(
+          path: '/habit_select',
+          name: HabitSelectScreen.routeName,
+          builder: (context, state) {
+            final args = state.extra as RoutineCreateArgs;
+
+            return HabitSelectScreen(
+              habit: args.habit!,
+              habitResponse: args.habitResponse!,
+            );
+          },
+        ),
+        GoRoute(
           path: '/routine_create',
           name: RoutineCreateScreen.routeName,
           builder: (context, state) {
-            RoutineTemplate? routine;
+            RoutineCreateArgs? args;
 
-            routine = state.extra as RoutineTemplate?;
+            args = state.extra as RoutineCreateArgs?;
             return RoutineCreateScreen(
-              routine: routine,
+              routine: args?.routineTemplate,
+              habit: args?.habit,
+              habitResponse: args?.habitResponse,
             );
           },
         ),
@@ -68,6 +103,8 @@ class AuthProvider extends ChangeNotifier {
               weekDays: args.weekDays,
               alertTime: args.alertTime,
               subRoutines: args.subRoutines,
+              habitModel: args.habitModel,
+              habitResponse: args.habitResponse,
             );
           },
         ),

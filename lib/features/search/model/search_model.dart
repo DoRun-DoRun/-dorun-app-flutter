@@ -1,3 +1,4 @@
+import 'package:dorun_app_flutter/features/habit/model/habit_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'search_model.g.dart';
@@ -219,6 +220,14 @@ final Map<String, List<RoutineTemplate>> templateListRoutine = {
         ])
   ],
 };
+
+class RoutineCreateArgs {
+  final RoutineTemplate? routineTemplate;
+  final HabitResponse? habitResponse;
+  final CreateHabitModel? habit;
+
+  RoutineCreateArgs({this.routineTemplate, this.habitResponse, this.habit});
+}
 
 class RoutineTemplate {
   final String goal, description;

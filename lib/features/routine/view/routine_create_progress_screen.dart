@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dorun_app_flutter/common/component/gap_column.dart';
 import 'package:dorun_app_flutter/common/constant/fonts.dart';
 import 'package:dorun_app_flutter/common/layout/default_layout.dart';
+import 'package:dorun_app_flutter/features/habit/model/habit_model.dart';
 import 'package:dorun_app_flutter/features/routine/model/routine_model.dart';
 import 'package:dorun_app_flutter/features/routine/provider/routine_provider.dart';
 import 'package:dorun_app_flutter/features/routine/repository/routine_repository.dart';
@@ -21,6 +22,8 @@ class RoutineCreateProgressScreen extends ConsumerStatefulWidget {
   final List<bool> weekDays;
   final Duration? alertTime;
   final List<SubRoutineTemplate>? subRoutines;
+  final CreateHabitModel? habitModel;
+  final HabitResponse? habitResponse;
 
   const RoutineCreateProgressScreen({
     super.key,
@@ -29,6 +32,8 @@ class RoutineCreateProgressScreen extends ConsumerStatefulWidget {
     required this.weekDays,
     required this.alertTime,
     this.subRoutines,
+    this.habitModel,
+    this.habitResponse,
   });
 
   @override
@@ -75,6 +80,8 @@ class _RoutineCreateProgressScreenState
 
   Future<void> createRoutine() async {
     final routineRepository = ref.read(routineRepositoryProvider);
+    print(
+        "${widget.routineGoal} + ${widget.startTime.inSeconds} ${widget.weekDays} ${widget.alertTime?.inSeconds} ${widget.subRoutines} ${widget.habitModel?.habitCategory} ${widget.habitResponse}");
 
     try {
       await routineRepository.createRoutine(
@@ -84,6 +91,8 @@ class _RoutineCreateProgressScreenState
           repeatDays: widget.weekDays,
           notificationTime: widget.alertTime?.inSeconds,
           subRoutines: widget.subRoutines,
+          habitCategory: widget.habitModel?.habitCategory,
+          actions: widget.habitResponse?.actions,
         ),
         util: widget.subRoutines == null ? 'gpt' : '',
       );

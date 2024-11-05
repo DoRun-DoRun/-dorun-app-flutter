@@ -7,6 +7,7 @@ import 'package:dorun_app_flutter/common/constant/colors.dart';
 import 'package:dorun_app_flutter/common/constant/fonts.dart';
 import 'package:dorun_app_flutter/common/layout/default_layout.dart';
 import 'package:dorun_app_flutter/common/utils/format.dart';
+import 'package:dorun_app_flutter/features/habit/model/habit_model.dart';
 import 'package:dorun_app_flutter/features/routine/model/routine_model.dart';
 import 'package:dorun_app_flutter/features/routine/view/components/repeat_button.dart';
 import 'package:dorun_app_flutter/features/routine/view/components/set_alert_time.dart';
@@ -20,8 +21,11 @@ import '../../../common/constant/data.dart';
 class RoutineCreateScreen extends StatefulWidget {
   static String get routeName => 'routineCreate';
   final RoutineTemplate? routine;
+  final HabitResponse? habitResponse;
+  final CreateHabitModel? habit;
 
-  const RoutineCreateScreen({super.key, this.routine});
+  const RoutineCreateScreen(
+      {super.key, this.routine, this.habit, this.habitResponse});
 
   @override
   State<RoutineCreateScreen> createState() => _RoutineCreateScreenState();
@@ -46,6 +50,11 @@ class _RoutineCreateScreenState extends State<RoutineCreateScreen> {
 
     if (widget.routine != null) {
       _routineGoal = widget.routine!.goal;
+      _textController.text = _routineGoal!;
+    }
+
+    if (widget.habit != null) {
+      _routineGoal = widget.habit!.habitGoal;
       _textController.text = _routineGoal!;
     }
   }
@@ -220,6 +229,8 @@ class _RoutineCreateScreenState extends State<RoutineCreateScreen> {
                       weekDays: createRepeatDays(_repeatCycle!, _weekDays),
                       alertTime: _alertTime,
                       subRoutines: widget.routine?.subRoutines,
+                      habitModel: widget.habit,
+                      habitResponse: widget.habitResponse,
                     ),
                   );
                 },

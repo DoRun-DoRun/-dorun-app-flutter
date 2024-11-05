@@ -84,7 +84,7 @@ class RoutineScreen extends ConsumerWidget {
             backgroundColor: AppColors.BRAND,
             shape: const CircleBorder(),
             onPressed: () {
-              context.push('/routine_create');
+              context.push('/habit_create');
             },
             child: const Icon(Icons.add),
           ),
@@ -127,7 +127,7 @@ class RoutineScreen extends ConsumerWidget {
                           ? PaddingContainer(
                               child: GestureDetector(
                                 onTap: () {
-                                  context.push('/routine_create');
+                                  context.push('/habit_create');
                                 },
                                 child: const SizedBox(
                                   width: double.infinity,

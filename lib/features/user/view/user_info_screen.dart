@@ -31,6 +31,7 @@ class _UserInfoScreenState extends ConsumerState<UserInfoScreen> {
   String? _selectedAge;
   String? _selectedGender;
   String? _selectedJob;
+
   List<String> guideQuestions = [
     '그전에 혹시\n사용자님을 어떻게 부르면 될까요?',
     '님을 보다 잘 이해하기 위해서 나이 정보가 필요해요.',
@@ -90,7 +91,8 @@ class _UserInfoScreenState extends ConsumerState<UserInfoScreen> {
                         alignment: Alignment.center,
                         children: [
                           ChatBubble(
-                              text: "좋아요~! 거의 다 왔어요.\n이제 저와 함께 습관을 만들러 가봐요"),
+                            text: "좋아요~! 거의 다 왔어요.\n이제 저와 함께 습관을 만들러 가봐요",
+                          ),
                         ],
                       ),
                     ),
@@ -144,7 +146,7 @@ class _UserInfoScreenState extends ConsumerState<UserInfoScreen> {
                               );
                               if (context.mounted) {
                                 context.go('/');
-                                context.push('/routine_create');
+                                context.push('/habit_create');
                               }
                               ref.invalidate(userMeProvider);
                             },

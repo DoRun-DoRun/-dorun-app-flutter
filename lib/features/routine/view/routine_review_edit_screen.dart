@@ -86,8 +86,10 @@ class _RoutineReviewEditScreenState extends State<RoutineReviewEditScreen> {
             child: CustomButton(
               title: '확인',
               onPressed: () {
-                context.push('/routine_review/${widget.id}',
-                    extra: widget.routineHistory);
+                context.push(
+                  '/routine_review/${widget.id}',
+                  extra: widget.routineHistory,
+                );
               },
               backgroundColor: AppColors.BRAND_SUB,
               foregroundColor: AppColors.TEXT_BRAND,
